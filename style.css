@@ -70,6 +70,24 @@ body {
   z-index: 3;
 }
 
+.score-board {
+  color: var(--bs-gray-900);
+  font-size: 25px;
+
+  background: var(--bs-gray-300);
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  transform: translateX(-50%) scale(1);
+
+  padding: 5px 15px;
+  border-radius: 10px;
+  border: 2px solid var(--bs-gray-300);
+  transition: 0.3s ease;
+
+  z-index: 3;
+}
+
 .board {
   background: var(--bs-gray-300);
 

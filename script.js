@@ -2,6 +2,7 @@ const innerBoard = document.querySelectorAll(".inner-board");
 const startBg = document.querySelector(".bg-start");
 const startBtn = document.querySelector(".start-btn");
 const playerBoard = document.querySelector(".player-board");
+const scoreBoard = document.querySelector(".score-board");
 
 let currentPlayer = "p1";
 const possibleWins = ["123", "456", "789", "159", "147", "258", "369"];
@@ -9,11 +10,14 @@ let playedPosition = [];
 let p1Positions = [];
 let p2Positions = [];
 let winOrNot = [];
+let p1Score = [];
+let p2Score = [];
 
 startBtn.addEventListener("click", () => {
   reset();
   playerBoard.classList.remove("display");
   playerBoard.innerHTML = "Player 1 - [X]";
+  scoreBoard.classList.remove("display");
 });
 
 // For each innerBoard clicked, add the position to the player's position arr!
@@ -29,7 +33,9 @@ innerBoard.forEach((e) => {
         checkForTurn();
 
         if (checkForWin(p1Positions) === true) {
-          playerBoard.innerHTML = "Player 1 Wins";
+          playerBoard.innerHTML = `Player 1 Wins`;
+          p1Score.push("win");
+          keepScore();
           reset();
         }
         Positioning();
@@ -41,7 +47,9 @@ innerBoard.forEach((e) => {
         checkForTurn();
 
         if (checkForWin(p2Positions) === true) {
-          playerBoard.innerHTML = "Player 2 Wins";
+          playerBoard.innerHTML = `Player 2 Wins`;
+          p2Score.push("win");
+          keepScore();
           reset();
         }
         Positioning();
@@ -50,6 +58,10 @@ innerBoard.forEach((e) => {
     }
   });
 });
+
+const keepScore = () => {
+  scoreBoard.innerHTML = `Player 1 [${p1Score.length} - ${p2Score.length}] Player 2`;
+};
 
 // display Which player won!
 const checkForTurn = () => {
