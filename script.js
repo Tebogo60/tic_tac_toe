@@ -7,6 +7,7 @@ const p1Positions = [];
 const p2Positions = [];
 let winOrNot = [];
 
+// Foreach innerBoard clicked, add the position to the player's position arr!
 innerBoard.forEach((e) => {
   e.addEventListener("click", () => {
     if (playedPosition.includes(e.id)) {
@@ -38,6 +39,7 @@ innerBoard.forEach((e) => {
   });
 });
 
+// Placing a symbols to the appropriate innerBoard
 const Positioning = () => {
   innerBoard.forEach((e) => {
     if (p1Positions.includes(e.id)) {
@@ -49,6 +51,7 @@ const Positioning = () => {
   });
 };
 
+// Checking if player has wining positioning
 const checkForWin = (arr) => {
   for (let i = 0; i < positionWins.length; i++) {
     for (let j = 0; j < positionWins[i].length; j++) {
@@ -66,6 +69,7 @@ const checkForWin = (arr) => {
   }
 };
 
+// Resetting the entire board
 const reset = () => {
   currentPlayer = "p1";
   playedPosition = [];
