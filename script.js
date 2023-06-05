@@ -14,34 +14,40 @@ innerBoard.forEach((e) => {
     }
 
     playedPosition.push(e.id);
-
     if (currentPlayer === "p1") {
-      e.classList.add("cross");
-
       p1Positions.push(e.id);
       currentPlayer = "p2";
 
       if (checkForWin(p1Positions) === true) {
         console.log("Player 1 wins");
-        reset();
       }
+      Positioning();
       return;
     }
 
     if (currentPlayer === "p2") {
-      e.classList.add("circle");
-
       p2Positions.push(e.id);
       currentPlayer = "p1";
 
       if (checkForWin(p2Positions) === true) {
         console.log("Player 2 wins");
-        reset();
       }
+      Positioning();
       return;
     }
   });
 });
+
+const Positioning = () => {
+  innerBoard.forEach((e) => {
+    if (p1Positions.includes(e.id)) {
+      e.classList.add("cross");
+    }
+    if (p2Positions.includes(e.id)) {
+      e.classList.add("circle");
+    }
+  });
+};
 
 const checkForWin = (arr) => {
   for (let i = 0; i < positionWins.length; i++) {
