@@ -5,6 +5,13 @@ body {
   background: var(--bs-gray-900);
 }
 
+.object-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
 .button {
   color: var(--bs-gray-300);
   text-align: center;
@@ -26,10 +33,7 @@ body {
 }
 
 .start-btn {
-  position: absolute;
-  left: 50%;
   top: calc(50% - 10px);
-  transform: translateX(-50%) translateY(-50%);
 }
 
 .start-btn:active {
@@ -41,9 +45,6 @@ body {
   position: fixed;
   width: 400px;
   height: 400px;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%) scale(1);
 
   border-radius: 20px;
   border: 2px solid var(--bs-gray-300);
@@ -52,13 +53,13 @@ body {
   transition: 0.3s ease;
 }
 
-.player-board {
+.player-board,
+.score-board {
   color: var(--bs-gray-900);
   font-size: 25px;
 
   background: var(--bs-gray-300);
   position: absolute;
-  top: 15px;
   left: 50%;
   transform: translateX(-50%) scale(1);
 
@@ -70,22 +71,12 @@ body {
   z-index: 3;
 }
 
+.player-board {
+  top: 15px;
+}
+
 .score-board {
-  color: var(--bs-gray-900);
-  font-size: 25px;
-
-  background: var(--bs-gray-300);
-  position: absolute;
-  left: 50%;
   bottom: 15px;
-  transform: translateX(-50%) scale(1);
-
-  padding: 5px 15px;
-  border-radius: 10px;
-  border: 2px solid var(--bs-gray-300);
-  transition: 0.3s ease;
-
-  z-index: 3;
 }
 
 .board {
@@ -94,9 +85,6 @@ body {
   position: absolute;
   width: 300px;
   height: 300px;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
 
   display: grid;
   gap: 2px;
