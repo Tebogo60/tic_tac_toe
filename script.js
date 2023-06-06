@@ -4,8 +4,7 @@ const startBtn = document.querySelector(".start-btn");
 const playerBoard = document.querySelector(".player-board");
 const scoreBoard = document.querySelector(".score-board");
 
-let currentPlayer = "p1";
-const possibleWins = ["123", "456", "789", "159", "147", "258", "369"];
+const possibleWins = ["123", "456", "789", "159", "147", "258", "369", "357"];
 let playedPosition = [];
 let p1Positions = [];
 let p2Positions = [];
@@ -13,6 +12,7 @@ let winOrNot = [];
 let p1Score = [];
 let p2Score = [];
 
+// Start Game func
 startBtn.addEventListener("click", () => {
   reset();
   playerBoard.classList.remove("display");
@@ -28,7 +28,7 @@ innerBoard.forEach((e) => {
     } else {
       playedPosition.push(e.id);
 
-      if (currentPlayer === "p1") {
+      if (playerBoard.innerHTML === "Player 1 - [X]") {
         p1Positions.push(e.id);
         checkForTurn();
 
@@ -40,9 +40,7 @@ innerBoard.forEach((e) => {
         }
         Positioning();
         return;
-      }
-
-      if (currentPlayer === "p2") {
+      } else {
         p2Positions.push(e.id);
         checkForTurn();
 
@@ -59,18 +57,17 @@ innerBoard.forEach((e) => {
   });
 });
 
+// Display game score
 const keepScore = () => {
   scoreBoard.innerHTML = `Player 1 [${p1Score.length} - ${p2Score.length}] Player 2`;
 };
 
 // display Which player won!
 const checkForTurn = () => {
-  if (currentPlayer === "p1") {
-    currentPlayer = "p2";
-    playerBoard.innerHTML = "Player 1 - [X]";
-  } else {
-    currentPlayer = "p1";
+  if (playerBoard.innerHTML === "Player 1 - [X]") {
     playerBoard.innerHTML = "Player 2 - [O]";
+  } else {
+    playerBoard.innerHTML = "Player 1 - [X]";
   }
 };
 
@@ -90,7 +87,6 @@ const Positioning = () => {
 const checkForDraw = () => {
   if (playedPosition.length === 9) {
     reset();
-    startBg.classList.remove("display");
     playerBoard.innerHTML = "Draw :(";
   }
 };
@@ -116,15 +112,13 @@ const checkForWin = (arr) => {
 
 // Resetting the entire board
 const reset = () => {
-  currentPlayer = "p1";
-  playedPosition = [];
-  p1Positions = [];
-  p2Positions = [];
-
   innerBoard.forEach((e) => {
     e.classList.remove("circle");
     e.classList.remove("cross");
   });
 
+  playedPosition = [];
+  p1Positions = [];
+  p2Positions = [];
   startBg.classList.toggle("display");
 };
